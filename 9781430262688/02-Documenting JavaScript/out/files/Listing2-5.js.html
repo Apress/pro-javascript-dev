@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Listing2-5.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Accommodation.html">Accommodation</a></li>
+            
+                <li><a href="../classes/Cookies.html">Cookies</a></li>
+            
+                <li><a href="../classes/House.html">House</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Accommodation-related.html">Accommodation-related</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: Listing2-5.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * Accommodation-related &quot;classes&quot;
+ *
+ * @module Accommodation-related
+ */
+
+/**
+ * A &quot;class&quot; defining types of accommodation
+ *
+ * @class Accommodation
+ * @constructor
+ * @example
+ *     var myAccommodation = new Accommodation();
+ */
+
+var Accommodation = Class.create((function() {
+
+    /**
+     * Denotes whether the accommodation is currently locked
+     *
+     * @property {Boolean} _isLocked
+     * @protected
+     */
+
+    var _isLocked = true,
+        publicPropertiesAndMethods = {
+
+            /**
+             * Locks the accommodation
+             *
+             * @method lock
+             * @example
+             *     var myAccommodation = new Accommodation();
+             *     myAccommodation.lock();
+             */
+
+            lock: function() {
+                _isLocked = true;
+            },
+
+            /**
+             * Unlocks the accommodation
+             *
+             * @method unlock
+             * @example
+             *     var myAccommodation = new Accommodation();
+             *     myAccommodation.unlock();
+             */
+
+            unlock: function() {
+                _isLocked = false;
+            },
+
+            /**
+             * Establishes whether the accommodation is currently locked or not
+             *
+             * @method getIsLocked
+             * @return {Boolean} Value indicating lock status - &#x27;true&#x27; means locked
+             * @example
+             *     var myAccommodation = new Accommodation();
+             *     myAccommodation.getIsLocked(); // false
+             *
+             * @example
+             *     var myAccommodation = new Accommodation();
+             *     myAccommodation.lock();
+             *     myAccommodation.getIsLocked(); // true
+             */
+
+            getIsLocked: function() {
+                return _isLocked;
+            },
+
+            /**
+             * Executed automatically upon creation of an object instance of this &quot;class&quot;.
+             * Unlocks the accommodation.
+             *
+             * @method initialize
+             */
+
+            initialize: function() {
+                this.unlock();
+            }
+        };
+
+    return publicPropertiesAndMethods;
+}()));
+
+/**
+ * &quot;Class&quot; representing a house, a specific type of accommodation
+ *
+ * @class House
+ * @constructor
+ * @extends Accommodation
+ * @example
+ *     var myHouse = new House();
+ */
+
+var House = Accommodation.extend({
+
+    /**
+     * Indicates whether the house is alarmed or not - &#x27;true&#x27; means alarmed
+     *
+     * @property {Boolean} isAlarmed
+     */
+
+    isAlarmed: false,
+
+    /**
+     * Activates the house alarm
+     *
+     * @method alarm
+     */
+
+    alarm: function() {
+        this.isAlarmed = true;
+        alert(&quot;Alarm activated!&quot;);
+    },
+
+    /**
+     * Locks the house and activates the alarm
+     *
+     * @method lock
+     */
+
+    lock: function() {
+        Accommodation.prototype.lock.call(this);
+        this.alarm();
+    }
+});
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>
